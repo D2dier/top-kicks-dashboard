@@ -4,24 +4,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { CaretUpFill, CaretDownFill } from 'react-bootstrap-icons';
 import LanguageContext from './LanguageContext'; // ✅ Import global context
 
+const playersData = [
+    { id: 1, name: "James Milner", appearances: 619, team: "Brighton", position: "Midfielder / Milieu" },
+    { id: 2, name: "Fernandinho", appearances: 504, team: "Manchester City", position: "Midfielder / Milieu" },
+    { id: 3, name: "Jordan Henderson", appearances: 492, team: "Liverpool", position: "Midfielder / Milieu" },
+    { id: 4, name: "David Silva", appearances: 436, team: "Manchester City", position: "Midfielder / Milieu" },
+    { id: 5, name: "César Azpilicueta", appearances: 425, team: "Chelsea", position: "Defender / Défenseur" },
+    { id: 6, name: "Kyle Walker", appearances: 412, team: "Manchester City", position: "Defender / Défenseur" },
+    { id: 7, name: "Ashley Young", appearances: 408, team: "Everton", position: "Defender / Défenseur" },
+    { id: 8, name: "Hugo Lloris", appearances: 405, team: "Tottenham", position: "Goalkeeper / Gardien" },
+    { id: 9, name: "Raheem Sterling", appearances: 399, team: "Chelsea", position: "Forward / Attaquant" },
+    { id: 10, name: "Kevin De Bruyne", appearances: 392, team: "Manchester City", position: "Midfielder / Milieu" }
+  ];
+
 const AppearancesTable = () => {
   const { language } = useContext(LanguageContext); // ✅ Use global state
   const [sortConfig, setSortConfig] = useState({ key: 'appearances', direction: 'desc' });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  const playersData = [
-    { id: 1, name: "James Milner", appearances: 619, team: "Brighton", position: "Midfielder" },
-    { id: 2, name: "Fernandinho", appearances: 504, team: "Manchester City", position: "Midfielder" },
-    { id: 3, name: "Jordan Henderson", appearances: 492, team: "Liverpool", position: "Midfielder" },
-    { id: 4, name: "David Silva", appearances: 436, team: "Manchester City", position: "Midfielder" },
-    { id: 5, name: "César Azpilicueta", appearances: 425, team: "Chelsea", position: "Defender" },
-    { id: 6, name: "Kyle Walker", appearances: 412, team: "Manchester City", position: "Defender" },
-    { id: 7, name: "Ashley Young", appearances: 408, team: "Everton", position: "Defender" },
-    { id: 8, name: "Hugo Lloris", appearances: 405, team: "Tottenham", position: "Goalkeeper" },
-    { id: 9, name: "Raheem Sterling", appearances: 399, team: "Chelsea", position: "Forward" },
-    { id: 10, name: "Kevin De Bruyne", appearances: 392, team: "Manchester City", position: "Midfielder" }
-  ];
+  
 
   const translations = {
     en: {
