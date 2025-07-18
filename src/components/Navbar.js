@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiamond } from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
@@ -8,7 +8,6 @@ import {
   Activity, 
   Person, 
   People,
-  Gear,
   List,
   Globe
 } from 'react-bootstrap-icons';

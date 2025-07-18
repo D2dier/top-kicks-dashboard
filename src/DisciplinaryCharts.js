@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Container, Row, Col, Card, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,7 +23,7 @@ ChartJS.register(
 );
 
 const DisciplinaryChart = () => {
-  const { language, setLanguage } = useContext(LanguageContext); // ✅ Use global state
+  const { language } = useContext(LanguageContext); // ✅ Use global state
 
   const playersData = [
     { id: 1, name: "João Palhinha", yellow: 12, red: 1, team: "Fulham" },

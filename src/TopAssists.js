@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Container, Row, Col, Card, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,7 +23,7 @@ ChartJS.register(
 );
 
 const TopAssists = () => {
-  const { language, setLanguage } = useContext(LanguageContext); // ✅ Use global language
+  const { language } = useContext(LanguageContext); // ✅ Use global language
 
   const assistsData = [
     { id: 1, name: "Kevin De Bruyne", assists: 16, team: "Manchester City" },

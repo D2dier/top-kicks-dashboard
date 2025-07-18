@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Container, Row, Col, Card, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,7 +23,7 @@ ChartJS.register(
 );
 
 const TopScorers = () => {
-  const { language, setLanguage } = useContext(LanguageContext); // ✅ Use context
+  const { language } = useContext(LanguageContext); // ✅ Use context
 
   // Mock data for top scorers
   const scorersData = [

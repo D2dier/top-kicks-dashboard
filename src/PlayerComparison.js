@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LanguageContext from './LanguageContext';
 
 const PlayerComparison = () => {
-  const { language, setLanguage } = useContext(LanguageContext);
+  const { language } = useContext(LanguageContext);
   const [player1, setPlayer1] = useState(null);
   const [player2, setPlayer2] = useState(null);
 

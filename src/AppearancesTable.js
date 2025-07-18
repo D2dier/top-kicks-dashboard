@@ -1,11 +1,11 @@
-import React, { useContext, useMemo, useState } from 'react';
-import { Container, Row, Col, Table, Button, Pagination } from 'react-bootstrap';
+import { useContext, useMemo, useState } from 'react';
+import { Container, Row, Col, Table, Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CaretUpFill, CaretDownFill } from 'react-bootstrap-icons';
 import LanguageContext from './LanguageContext'; // ✅ Import global context
 
 const AppearancesTable = () => {
-  const { language, setLanguage } = useContext(LanguageContext); // ✅ Use global state
+  const { language } = useContext(LanguageContext); // ✅ Use global state
   const [sortConfig, setSortConfig] = useState({ key: 'appearances', direction: 'desc' });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;

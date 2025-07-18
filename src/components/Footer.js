@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiamond } from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
@@ -7,7 +7,6 @@ import {
   Trophy,
   Activity,
   Person,
-  Gear,
   People,
   Github,
   Database,
@@ -17,7 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LanguageContext from '../LanguageContext'; // ✅ Import context
 
 const Footer = () => {
-  const { language, setLanguage } = useContext(LanguageContext); // ✅ Use context
+  const { language } = useContext(LanguageContext); // ✅ Use context
 
   const translations = {
     en: {
