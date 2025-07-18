@@ -2,28 +2,26 @@ import { useContext, useMemo, useState } from 'react';
 import { Container, Row, Col, Table, Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CaretUpFill, CaretDownFill } from 'react-bootstrap-icons';
-import LanguageContext from './LanguageContext'; // ✅ Import global context
+import LanguageContext from './LanguageContext';
 
 const playersData = [
-    { id: 1, name: "James Milner", appearances: 619, team: "Brighton", position: "Midfielder / Milieu" },
-    { id: 2, name: "Fernandinho", appearances: 504, team: "Manchester City", position: "Midfielder / Milieu" },
-    { id: 3, name: "Jordan Henderson", appearances: 492, team: "Liverpool", position: "Midfielder / Milieu" },
-    { id: 4, name: "David Silva", appearances: 436, team: "Manchester City", position: "Midfielder / Milieu" },
-    { id: 5, name: "César Azpilicueta", appearances: 425, team: "Chelsea", position: "Defender / Défenseur" },
-    { id: 6, name: "Kyle Walker", appearances: 412, team: "Manchester City", position: "Defender / Défenseur" },
-    { id: 7, name: "Ashley Young", appearances: 408, team: "Everton", position: "Defender / Défenseur" },
-    { id: 8, name: "Hugo Lloris", appearances: 405, team: "Tottenham", position: "Goalkeeper / Gardien" },
-    { id: 9, name: "Raheem Sterling", appearances: 399, team: "Chelsea", position: "Forward / Attaquant" },
-    { id: 10, name: "Kevin De Bruyne", appearances: 392, team: "Manchester City", position: "Midfielder / Milieu" }
-  ];
+  { id: 1, name: "James Milner", appearances: 619, team: "Brighton", position: "Midfielder / Milieu" },
+  { id: 2, name: "Fernandinho", appearances: 504, team: "Manchester City", position: "Midfielder / Milieu" },
+  { id: 3, name: "Jordan Henderson", appearances: 492, team: "Liverpool", position: "Midfielder / Milieu" },
+  { id: 4, name: "David Silva", appearances: 436, team: "Manchester City", position: "Midfielder / Milieu" },
+  { id: 5, name: "César Azpilicueta", appearances: 425, team: "Chelsea", position: "Defender / Défenseur" },
+  { id: 6, name: "Kyle Walker", appearances: 412, team: "Manchester City", position: "Defender / Défenseur" },
+  { id: 7, name: "Ashley Young", appearances: 408, team: "Everton", position: "Defender / Défenseur" },
+  { id: 8, name: "Hugo Lloris", appearances: 405, team: "Tottenham", position: "Goalkeeper / Gardien" },
+  { id: 9, name: "Raheem Sterling", appearances: 399, team: "Chelsea", position: "Forward / Attaquant" },
+  { id: 10, name: "Kevin De Bruyne", appearances: 392, team: "Manchester City", position: "Midfielder / Milieu" }
+];
 
 const AppearancesTable = () => {
-  const { language } = useContext(LanguageContext); // ✅ Use global state
+  const { language } = useContext(LanguageContext);
   const [sortConfig, setSortConfig] = useState({ key: 'appearances', direction: 'desc' });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-
-  
 
   const translations = {
     en: {
@@ -58,17 +56,13 @@ const AppearancesTable = () => {
     const sortableItems = [...playersData];
     if (sortConfig.key) {
       sortableItems.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === 'asc' ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === 'asc' ? 1 : -1;
-        }
+        if (a[sortConfig.key] < b[sortConfig.key]) return sortConfig.direction === 'asc' ? -1 : 1;
+        if (a[sortConfig.key] > b[sortConfig.key]) return sortConfig.direction === 'asc' ? 1 : -1;
         return 0;
       });
     }
     return sortableItems;
-  }, [playersData, sortConfig]);
+  }, [sortConfig]); // ✅ fixed dependency list
 
   const requestSort = (key) => {
     let direction = 'asc';
@@ -80,9 +74,9 @@ const AppearancesTable = () => {
 
   const getSortIcon = (key) => {
     if (sortConfig.key !== key) return null;
-    return sortConfig.direction === 'asc' ? 
-      <CaretUpFill className="ms-1" /> : 
-      <CaretDownFill className="ms-1" />;
+    return sortConfig.direction === 'asc'
+      ? <CaretUpFill className="ms-1" />
+      : <CaretDownFill className="ms-1" />;
   };
 
   const totalPages = Math.ceil(playersData.length / itemsPerPage);
@@ -97,12 +91,6 @@ const AppearancesTable = () => {
         <Col>
           <div className="d-flex justify-content-between align-items-center">
             <h1>{t.title}</h1>
-            {/* <Button 
-              variant="outline-primary" 
-              onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
-            >
-              {language === 'en' ? t.switchToFrench : "English"}
-            </Button> */}
           </div>
           <p className="lead">{t.description}</p>
         </Col>
@@ -146,7 +134,7 @@ const AppearancesTable = () => {
               {t.showing} {(currentPage - 1) * itemsPerPage + 1}-{Math.min(currentPage * itemsPerPage, playersData.length)} {t.of} {playersData.length} {t.records}
             </div>
             <Pagination>
-              <Pagination.Prev 
+              <Pagination.Prev
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
               />
@@ -159,7 +147,7 @@ const AppearancesTable = () => {
                   {i + 1}
                 </Pagination.Item>
               ))}
-              <Pagination.Next 
+              <Pagination.Next
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
               />
