@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Import navigate
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiamond } from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
@@ -13,10 +14,11 @@ import {
   Info
 } from 'react-bootstrap-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LanguageContext from '../LanguageContext'; // ✅ Import context
+import LanguageContext from '../LanguageContext';
 
 const Footer = () => {
-  const { language } = useContext(LanguageContext); // ✅ Use context
+  const { language } = useContext(LanguageContext);
+  const navigate = useNavigate(); // ✅ Hook
 
   const translations = {
     en: {
@@ -59,8 +61,7 @@ const Footer = () => {
     { path: "/assists", icon: <Activity className="me-2" />, text: t.assists },
     { path: "/cards", icon: <FontAwesomeIcon icon={faDiamond} className="me-2" />, text: t.cards },
     { path: "/appearances", icon: <Person className="me-2" />, text: t.appearances },
-    { path: "/comparison", icon: <People className="me-1" />, text: t.comparison },
-    //{ path: "/settings", icon: <Gear className="me-2" />, text: t.settings }
+    { path: "/comparison", icon: <People className="me-1" />, text: t.comparison }
   ];
 
   return (
@@ -73,8 +74,9 @@ const Footer = () => {
               {navItems.map((item, index) => (
                 <Nav.Link
                   key={index}
-                  href={item.path}
+                  onClick={() => navigate(item.path)}
                   className="text-white-50 d-flex align-items-center px-0 py-1"
+                  style={{ cursor: 'pointer' }}
                 >
                   {item.icon}
                   {item.text}
@@ -107,14 +109,6 @@ const Footer = () => {
                 ? "A comprehensive dashboard for Premier League statistics and player comparisons."
                 : "Un tableau de bord complet pour les statistiques de la Premier League et les comparaisons de joueurs."}
             </p>
-            <div className="d-flex align-items-center">
-              {/* <button
-                onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
-                className="btn btn-outline-light btn-sm"
-              >
-                {t.switchToFrench}
-              </button> */}
-            </div>
           </Col>
         </Row>
 

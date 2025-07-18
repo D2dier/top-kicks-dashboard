@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ NEW
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiamond } from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
@@ -17,6 +18,7 @@ import LanguageContext from '../LanguageContext'; // 🔹 Import context
 const BilingualNavbar = () => {
   const { language, setLanguage } = useContext(LanguageContext); // 🔹 Use context
   const [expanded, setExpanded] = useState(false);
+  const navigate = useNavigate(); // ✅ NEW
 
   const translations = {
     en: {
@@ -53,8 +55,8 @@ const BilingualNavbar = () => {
     { path: "/assists", icon: <Activity className="me-1" />, text: t.assists },
     { path: "/cards", icon: <FontAwesomeIcon icon={faDiamond} className="me-1" />, text: t.cards },
     { path: "/appearances", icon: <Person className="me-1" />, text: t.appearances },
-    { path: "/comparison", icon: <People className="me-1" />, text: t.comparison },
-    //{ path: "/settings", icon: <Gear className="me-1" />, text: t.settings }
+    { path: "/comparison", icon: <People className="me-1" />, text: t.comparison }
+    // { path: "/settings", icon: <Gear className="me-1" />, text: t.settings }
   ];
 
   const toggleLanguage = () => {
@@ -71,7 +73,14 @@ const BilingualNavbar = () => {
       className="shadow"
     >
       <Container fluid>
-        <Navbar.Brand href="/" className="d-flex align-items-center">
+        <Navbar.Brand
+          onClick={() => {
+            navigate('/');
+            setExpanded(false);
+          }}
+          style={{ cursor: 'pointer' }}
+          className="d-flex align-items-center"
+        >
           <Trophy className="me-2" />
           <span>Premier League Stats</span>
         </Navbar.Brand>
@@ -83,9 +92,12 @@ const BilingualNavbar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             {navItems.map((item, index) => (
-              <Nav.Link 
-                key={index} 
-                href={item.path}
+              <Nav.Link
+                key={index}
+                onClick={() => {
+                  navigate(item.path);
+                  setExpanded(false);
+                }}
                 className="d-flex align-items-center"
               >
                 {item.icon}
