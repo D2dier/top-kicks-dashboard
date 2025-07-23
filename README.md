@@ -1,12 +1,12 @@
 
 ---
 
-## 📁 `top-kicks-dashboard` — Assignment 5: Football Stats Dashboard
+## 📁 `top-kicks-dashboard` — Football Stats Dashboard
 
 ```markdown
 # Top Kick Dashboard
 
-**Top Kicks Dashboard** is an interactive bilingual dashboard built for Assignment 5 of SEG3525. It presents football (soccer) statistics such as goals, assists, cards, and player comparisons in a user-friendly, interactive interface.
+**Top Kicks Dashboard** is an interactive bilingual dashboard. It presents football (soccer) statistics such as goals, assists, cards, and player comparisons in a user-friendly, interactive interface.
 
 ## ⚽ Features
 
